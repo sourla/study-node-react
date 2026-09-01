@@ -1,0 +1,4 @@
+[
+  {"id":1,"title":"CSR과 SSR 시작하기","content":"브라우저와 서버의 데이터 조회 방식을 비교합니다.","author":"admin","createdAt":"2026-09-01"},
+  {"id":2,"title":"React Router loader","content":"loader로 라우트 렌더링 전 데이터를 준비합니다.","author":"admin","createdAt":"2026-09-02"}
+]
