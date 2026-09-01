@@ -3,8 +3,11 @@ import {useLoaderData, useLocation} from 'react-router-dom'
 import {PostList} from '../../common/components/PostList'
 import type {Post} from '../../common/types/post'
 import {ssrLoader} from './ssrLoader'
+import type {Route} from './+types/SsrPage'
 
-export {ssrLoader as loader}
+export function loader({request}: Route.LoaderArgs) {
+  return ssrLoader({request})
+}
 
 export function SsrPage() {
   const posts = useLoaderData() as Post[]

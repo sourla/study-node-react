@@ -1,6 +1,7 @@
 import { useLoaderData } from 'react-router-dom'
 import { PostDetail } from '../../common/components/PostDetail'
 import type { Post } from '../../common/types/post'
+import type { Route } from './+types/SsrDetailPage'
 
 export async function ssrDetailLoader({ params, request }: { params: { id?: string }; request: Request }) {
   const response = await fetch(new URL('/data/posts.json', request.url))
@@ -11,7 +12,9 @@ export async function ssrDetailLoader({ params, request }: { params: { id?: stri
   return post
 }
 
-export { ssrDetailLoader as loader }
+export function loader({ params, request }: Route.LoaderArgs) {
+  return ssrDetailLoader({ params, request })
+}
 
 export function SsrDetailPage() {
   const post = useLoaderData() as Post
