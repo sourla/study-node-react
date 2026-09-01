@@ -24,9 +24,12 @@ export function PostList({ posts, basePath = '' }: { posts: Post[]; basePath?: s
           </h2>
           <p className="mb-6 leading-7 text-zinc-400">{post.content}</p>
           <small className="text-zinc-500">by {post.author}</small>
-          <span className="mt-4 block text-sm font-medium text-violet-300 opacity-0 transition group-hover:opacity-100">
+          <Link
+            to={`${basePath}/${post.id}`}
+            className="mt-4 block text-sm font-medium text-violet-300 opacity-0 transition group-hover:opacity-100 hover:text-violet-200"
+          >
             상세 보기 →
-          </span>
+          </Link>
         </li>
       ))}
     </ul>
