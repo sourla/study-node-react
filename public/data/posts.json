@@ -1,4 +1,37 @@
 [
-  {"id":1,"title":"CSR과 SSR 시작하기","content":"브라우저와 서버의 데이터 조회 방식을 비교합니다.","author":"admin","createdAt":"2026-09-01"},
-  {"id":2,"title":"React Router loader","content":"loader로 라우트 렌더링 전 데이터를 준비합니다.","author":"admin","createdAt":"2026-09-02"}
+  {
+    "id": 1,
+    "title": "CSR과 SSR 시작하기",
+    "content": "브라우저와 서버의 데이터 조회 방식을 비교합니다.",
+    "author": "admin",
+    "createdAt": "2026-09-01T00:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "title": "React Router loader",
+    "content": "loader로 라우트 렌더링 전 데이터를 준비합니다.",
+    "author": "admin",
+    "createdAt": "2026-09-02T00:00:00.000Z"
+  },
+  {
+    "id": 3,
+    "title": "게시글 3",
+    "content": "조회 흐름을 확인하기 위한 게시글입니다.",
+    "author": "admin",
+    "createdAt": "2026-09-03T00:00:00.000Z"
+  },
+  {
+    "id": 4,
+    "title": "게시글 4",
+    "content": "조회 흐름을 확인하기 위한 게시글입니다.",
+    "author": "admin",
+    "createdAt": "2026-09-04T00:00:00.000Z"
+  },
+  {
+    "id": 5,
+    "title": "게시글 5",
+    "content": "조회 흐름을 확인하기 위한 게시글입니다.",
+    "author": "admin",
+    "createdAt": "2026-09-05T00:00:00.000Z"
+  }
 ]

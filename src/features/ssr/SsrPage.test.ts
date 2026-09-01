@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import { ssrLoader } from './SsrPage'
+import { ssrLoader } from './ssrLoader'
 
 describe('ssrLoader', () => {
   it('loader에서 public JSON을 조회한다', async () => {
