@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "react-router dev",
+    "build": "react-router build",
+    "start": "react-router-serve ./build/server/index.js",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
@@ -15,16 +16,20 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@react-router/node": "^7.18.3",
+    "@react-router/serve": "^7.18.3",
     "express": "^5.2.1",
     "lucide-react": "^1.39.0",
     "luxon": "^3.7.2",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.3",
-    "zod": "^4.5.4"
+    "zod": "^4.5.4",
+    "isbot": "^5"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@react-router/dev": "^7.18.3",
     "@tailwindcss/vite": "^4.3.3",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",

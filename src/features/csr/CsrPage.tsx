@@ -6,11 +6,20 @@ import type { Post } from '../../common/types/post'
 export function CsrPage() {
   const [posts, setPosts] = useState<Post[]>([])
   const [error, setError] = useState<string>()
+
   useEffect(() => {
+    console.log('[page] CsrPage useEffect 실행')
     fetchPosts()
-      .then(setPosts)
-      .catch((reason: Error) => setError(reason.message))
+      .then((data) => {
+        console.log('[page] CsrPage 게시글 저장', data.length)
+        setPosts(data)
+      })
+      .catch((reason: Error) => {
+        console.error('[page] CsrPage 오류', reason)
+        setError(reason.message)
+      })
   }, [])
+
   return (
     <main>
       <div className="mb-10">
@@ -38,3 +47,5 @@ export function CsrPage() {
     </main>
   )
 }
+
+export default CsrPage

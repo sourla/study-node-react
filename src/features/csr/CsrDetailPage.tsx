@@ -15,3 +15,5 @@ export function CsrDetailPage() {
     <p className="text-zinc-500">게시글을 불러오는 중...</p>
   )
 }
+
+export default CsrDetailPage
