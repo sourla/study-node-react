@@ -1,4 +1,4 @@
-import { useSyncExternalStore } from 'react'
+import { useEffect } from 'react'
 import { useLoaderData, useLocation } from 'react-router-dom'
 import { PostList } from '../../common/components/PostList'
 import type { Post } from '../../common/types/post'
@@ -9,33 +9,13 @@ export function loader({ request }: Route.LoaderArgs) {
   return ssrLoader({ request })
 }
 
-// 하이드레이션 전후의 렌더링 결과를 구분한다.
-// 구독할 외부 스토어는 없으므로 subscribe는 빈 함수로 둔다.
-const emptySubscribe = () => () => {}
-
-function useIsHydrated() {
-  return useSyncExternalStore(
-    emptySubscribe,
-    () => true,
-    () => false,
-  )
-}
-
-// 초기 hydration 중 loader 데이터가 준비될 때까지 React Router가 표시하는 fallback이다.
-export function HydrateFallback() {
-  return (
-    <p role="status" className="text-zinc-400">
-      게시글을 불러오는 중...
-    </p>
-  )
-}
-
 export function SsrPage() {
   const posts = useLoaderData() as Post[]
   const location = useLocation()
-  const isHydrated = useIsHydrated()
 
-  if (import.meta.env.DEV) console.log('[page] SsrPage 진입', location.pathname)
+  useEffect(() => {
+    if (import.meta.env.DEV) console.log('[page] SsrPage 진입', location.pathname)
+  }, [location.pathname])
 
   return (
     <main>
@@ -57,12 +37,7 @@ export function SsrPage() {
         </span>
         <span className="text-zinc-400">상세 화면 · 총 5개</span>
       </div>
-      {isHydrated ? (
-        <PostList posts={posts} basePath="/ssr" />
-      ) : (
-        // 서버 렌더링 및 하이드레이션 중에는 목록 대신 fallback을 표시한다.
-        <HydrateFallback />
-      )}
+      <PostList posts={posts} basePath="/ssr" />
     </main>
   )
 }
