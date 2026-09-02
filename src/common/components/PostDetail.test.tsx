@@ -17,6 +17,8 @@ describe('PostDetail', () => {
       />,
     )
     expect(screen.getByRole('heading', { name: '상세 제목' })).toBeInTheDocument()
+    expect(screen.getByText('2026년 9월 1일')).toBeInTheDocument()
+    expect(screen.getByText('admin')).toBeInTheDocument()
     expect(screen.getByText('상세 내용')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: '← 목록으로' })).toHaveAttribute('href', '/csr')
   })
