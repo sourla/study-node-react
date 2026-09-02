@@ -61,3 +61,7 @@ SSR 동작 확인은 `build` → `start`. 루트 `index.html`이나 `vite previe
 데이터 원본은 `public/data/posts.json` 하나뿐이다(별도 API 서버 없음). 모든 조회 경로(`fetchPosts`, `ssrLoader`, `ssrDetailLoader`)가 Zod `postsSchema`로 응답을 검증한다.
 
 SSR 페이지는 loader 로직을 별도 파일(`ssrLoader.ts`, `ssrDetailLoader.ts`)로 빼 두고 route module의 `loader(args: Route.LoaderArgs)`가 이를 감싼다. 테스트가 route 타입 없이 loader 함수를 직접 호출할 수 있고, route 파일에는 컴포넌트와 route export만 남아 react-refresh 규칙(`eslint.config.js`의 `allowExportNames`)과도 맞는 구조다.
+
+## 브랜치 구조와 문서
+
+`main`은 뼈대다. 학습 시나리오는 `docs/00-scenarios.md`에 과제로 정의되어 있고, 풀이는 `main`에서 딴 브랜치에 남긴다(머지하지 않음). 브랜치별 역할은 그 문서의 표를 본다.
