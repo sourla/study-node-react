@@ -30,9 +30,14 @@ export function CsrPage() {
         <p className="text-zinc-400">브라우저에서 public JSON을 조회합니다.</p>
       </div>
       <div className="mb-8 flex items-center gap-3 rounded-xl border border-violet-400/20 bg-violet-400/5 px-4 py-3 text-sm">
-        <span className="rounded-full bg-violet-400 px-2 py-0.5 text-xs font-bold text-zinc-950">1</span>
-        <span className="text-white">목록</span><span className="text-zinc-500">→</span>
-        <span className="rounded-full border border-violet-400/50 px-2 py-0.5 text-xs font-bold text-violet-300">2</span>
+        <span className="rounded-full bg-violet-400 px-2 py-0.5 text-xs font-bold text-zinc-950">
+          1
+        </span>
+        <span className="text-white">목록</span>
+        <span className="text-zinc-500">→</span>
+        <span className="rounded-full border border-violet-400/50 px-2 py-0.5 text-xs font-bold text-violet-300">
+          2
+        </span>
         <span className="text-zinc-400">상세 화면 · 총 5개</span>
       </div>
       {error ? (

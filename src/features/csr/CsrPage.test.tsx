@@ -20,7 +20,11 @@ describe('CsrPage', () => {
         ]),
       ),
     )
-    render(<MemoryRouter><CsrPage /></MemoryRouter>)
+    render(
+      <MemoryRouter>
+        <CsrPage />
+      </MemoryRouter>,
+    )
     await waitFor(() => expect(screen.getByRole('heading', { name: 'CSR 글' })).toBeInTheDocument())
     expect(fetch).toHaveBeenCalledWith('/data/posts.json')
   })

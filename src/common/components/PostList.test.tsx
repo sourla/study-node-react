@@ -8,15 +8,15 @@ describe('PostList', () => {
     render(
       <MemoryRouter>
         <PostList
-        posts={[
-          {
-            id: 1,
-            title: '테스트 게시글',
-            content: '내용',
-            author: 'tester',
-            createdAt: '2026-09-01',
-          },
-        ]}
+          posts={[
+            {
+              id: 1,
+              title: '테스트 게시글',
+              content: '내용',
+              author: 'tester',
+              createdAt: '2026-09-01',
+            },
+          ]}
         />
       </MemoryRouter>,
     )

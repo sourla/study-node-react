@@ -21,13 +21,13 @@ npm run dev
 
 ## 화면과 라우트
 
-| 경로 | 화면 | 데이터 조회 방식 |
-| --- | --- | --- |
-| `/` | CSR 게시판 | `CsrPage`에서 조회 |
-| `/csr` | CSR 게시판 | `CsrPage`에서 조회 |
-| `/csr/:id` | CSR 상세 | `CsrDetailPage`에서 `useParams`로 ID 조회 |
-| `/ssr` | SSR 게시판 | 서버에서 `ssrLoader` 실행 후 HTML 생성 |
-| `/ssr/:id` | SSR 상세 | 서버에서 `ssrDetailLoader` 실행 후 HTML 생성 |
+| 경로       | 화면       | 데이터 조회 방식                             |
+| ---------- | ---------- | -------------------------------------------- |
+| `/`        | CSR 게시판 | `CsrPage`에서 조회                           |
+| `/csr`     | CSR 게시판 | `CsrPage`에서 조회                           |
+| `/csr/:id` | CSR 상세   | `CsrDetailPage`에서 `useParams`로 ID 조회    |
+| `/ssr`     | SSR 게시판 | 서버에서 `ssrLoader` 실행 후 HTML 생성       |
+| `/ssr/:id` | SSR 상세   | 서버에서 `ssrDetailLoader` 실행 후 HTML 생성 |
 
 > `/ssr`는 React Router Framework Mode의 실제 SSR 라우트입니다. 최초 요청은 서버에서 loader와 HTML 렌더링이 실행되고, 이후 브라우저에서는 hydration 후 SPA 방식으로 동작합니다.
 

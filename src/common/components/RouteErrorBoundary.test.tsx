@@ -5,7 +5,14 @@ import { RouteErrorBoundary } from './RouteErrorBoundary'
 
 function renderError(error: unknown) {
   const router = createMemoryRouter([
-    { path: '/', element: <div />, errorElement: <RouteErrorBoundary />, loader: () => { throw error } },
+    {
+      path: '/',
+      element: <div />,
+      errorElement: <RouteErrorBoundary />,
+      loader: () => {
+        throw error
+      },
+    },
   ])
   render(<RouterProvider router={router} />)
 }

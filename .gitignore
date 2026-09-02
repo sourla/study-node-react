@@ -29,3 +29,6 @@ dist-ssr
 # Claude Code — 개인 로컬 레이어
 CLAUDE.local.md
 .claude/settings.local.json
+
+# Playwright MCP 스냅샷
+.playwright-mcp/

@@ -12,22 +12,22 @@ React Router v7 **Framework Mode(SSR)** 학습 프로젝트 "Render Lab". 같은
 
 ## 자주 쓰는 명령
 
-| 명령 | 설명 |
-| --- | --- |
-| `npm run dev` | `react-router dev` — SSR 개발 서버 (http://localhost:5173) |
-| `npm run build` | `react-router build` → `build/client`, `build/server` |
-| `npm start` | 빌드된 SSR 서버 실행 (`react-router-serve`) |
-| `npm test` | Vitest 전체 1회 실행 |
-| `npx vitest run src/features/ssr/SsrPage.test.tsx` | 단일 파일 실행 |
-| `npx vitest run -t "404"` | 테스트 이름 패턴으로 실행 |
-| `npm run test:watch` / `npm run test:coverage` | watch / V8 커버리지(`coverage/`) |
-| `npx react-router typegen && npx tsc -b` | 타입 체크 (별도 script 없음) |
-| `npm run lint` | ESLint |
-| `npm run format` / `npm run format:check` | Prettier (semi 없음, single quote, width 100) |
+| 명령                                               | 설명                                                       |
+| -------------------------------------------------- | ---------------------------------------------------------- |
+| `npm run dev`                                      | `react-router dev` — SSR 개발 서버 (http://localhost:5173) |
+| `npm run build`                                    | `react-router build` → `build/client`, `build/server`      |
+| `npm start`                                        | 빌드된 SSR 서버 실행 (`react-router-serve`)                |
+| `npm test`                                         | Vitest 전체 1회 실행                                       |
+| `npx vitest run src/features/ssr/SsrPage.test.tsx` | 단일 파일 실행                                             |
+| `npx vitest run -t "404"`                          | 테스트 이름 패턴으로 실행                                  |
+| `npm run test:watch` / `npm run test:coverage`     | watch / V8 커버리지(`coverage/`)                           |
+| `npx react-router typegen && npx tsc -b`           | 타입 체크 (별도 script 없음)                               |
+| `npm run lint`                                     | ESLint                                                     |
+| `npm run format` / `npm run format:check`          | Prettier (semi 없음, single quote, width 100)              |
 
 `Route.LoaderArgs` 같은 `./+types/*` import는 `.react-router/types/`에 생성되는 파일을 가리킨다. `react-router dev`/`build`/`typegen` 중 하나를 돌려야 생기고(gitignore됨), `tsconfig.app.json`의 `rootDirs`가 이 디렉터리를 `src`에 겹쳐 매핑한다. 라우트 파일을 새로 추가하면 typegen을 다시 돌려야 타입이 잡힌다.
 
-`npm run preview`(`vite preview`)는 Framework Mode 이전 SPA 시절 잔재라 의미 없다. SSR 동작 확인은 `build` → `start`.
+SSR 동작 확인은 `build` → `start`. 루트 `index.html`이나 `vite preview`는 Framework Mode에서 쓰지 않는다.
 
 ## 아키텍처
 
@@ -58,6 +58,6 @@ React Router v7 **Framework Mode(SSR)** 학습 프로젝트 "Render Lab". 같은
 - **CSR**: 컴포넌트 `useEffect` 안에서 `common/api/posts.ts`의 `fetchPosts`/`fetchPost` 호출. 브라우저가 상대 경로 `/data/posts.json`을 fetch. 에러는 컴포넌트 state로 표시.
 - **SSR**: route module의 `loader`가 서버에서 실행. 서버에는 origin이 없어서 `new URL('/data/posts.json', request.url)`로 절대 URL을 만들어 fetch한다. 실패 시 `throw new Response(msg, { status })` → root `ErrorBoundary`가 `isRouteErrorResponse`로 받아 렌더링. 컴포넌트는 `useLoaderData()`로만 읽는다.
 
-데이터 원본은 `public/data/posts.json` 하나뿐이다(별도 API 서버 없음). Zod `postsSchema`로 응답을 검증한다. 단, `ssrDetailLoader`는 아직 검증 없이 캐스팅만 한다.
+데이터 원본은 `public/data/posts.json` 하나뿐이다(별도 API 서버 없음). 모든 조회 경로(`fetchPosts`, `ssrLoader`, `ssrDetailLoader`)가 Zod `postsSchema`로 응답을 검증한다.
 
-SSR 페이지는 loader 로직을 별도 함수(`ssrLoader`, `ssrDetailLoader`)로 빼 두고 `loader({ request }: Route.LoaderArgs)`가 이를 감싼다. 테스트가 route 타입 없이 loader 함수를 직접 호출할 수 있게 하기 위한 구조다.
+SSR 페이지는 loader 로직을 별도 파일(`ssrLoader.ts`, `ssrDetailLoader.ts`)로 빼 두고 route module의 `loader(args: Route.LoaderArgs)`가 이를 감싼다. 테스트가 route 타입 없이 loader 함수를 직접 호출할 수 있고, route 파일에는 컴포넌트와 route export만 남아 react-refresh 규칙(`eslint.config.js`의 `allowExportNames`)과도 맞는 구조다.

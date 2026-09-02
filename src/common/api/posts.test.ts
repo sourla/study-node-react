@@ -3,11 +3,19 @@ import { fetchPost, fetchPosts } from './posts'
 
 afterEach(() => vi.restoreAllMocks())
 
-const post = { id: 1, title: '글', content: '내용', author: 'admin', createdAt: '2026-09-01T00:00:00.000Z' }
+const post = {
+  id: 1,
+  title: '글',
+  content: '내용',
+  author: 'admin',
+  createdAt: '2026-09-01T00:00:00.000Z',
+}
 
 describe('posts api', () => {
   it('게시글 목록을 조회하고 검증한다', async () => {
-    vi.spyOn(globalThis, 'fetch').mockImplementation(async () => new Response(JSON.stringify([post])))
+    vi.spyOn(globalThis, 'fetch').mockImplementation(
+      async () => new Response(JSON.stringify([post])),
+    )
     await expect(fetchPosts()).resolves.toEqual([post])
   })
 
@@ -22,7 +30,9 @@ describe('posts api', () => {
   })
 
   it('ID로 게시글을 조회하고 없으면 오류를 던진다', async () => {
-    vi.spyOn(globalThis, 'fetch').mockImplementation(async () => new Response(JSON.stringify([post])))
+    vi.spyOn(globalThis, 'fetch').mockImplementation(
+      async () => new Response(JSON.stringify([post])),
+    )
     await expect(fetchPost(1)).resolves.toEqual(post)
     await expect(fetchPost(99)).rejects.toThrow('게시글을 찾을 수 없습니다.')
   })
