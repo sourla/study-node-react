@@ -1,5 +1,5 @@
+import { formatDate } from '../utils/formatDate'
 import type { Post } from '../types/post'
-import { DateTime } from 'luxon'
 import { Link } from 'react-router-dom'
 export function PostList({ posts, basePath = '' }: { posts: Post[]; basePath?: string }) {
   return (
@@ -13,9 +13,7 @@ export function PostList({ posts, basePath = '' }: { posts: Post[]; basePath?: s
             <span className="rounded-full bg-violet-400/10 px-2.5 py-1 text-xs font-medium text-violet-300">
               POST #{post.id}
             </span>
-            <span className="text-xs text-zinc-500">
-              {DateTime.fromISO(post.createdAt).toLocaleString(DateTime.DATE_MED)}
-            </span>
+            <span className="text-xs text-zinc-500">{formatDate(post.createdAt)}</span>
           </div>
           <h2 className="mb-2 text-xl font-semibold text-white">
             <Link to={`${basePath}/${post.id}`} className="hover:text-violet-300">

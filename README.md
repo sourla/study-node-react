@@ -88,3 +88,7 @@ npm run lint         # ESLint 검사
 npm run format       # Prettier 적용
 npm run format:check # 포맷 검사
 ```
+
+## 문서
+
+- [CSR vs SSR 렌더링 흐름과 디버깅 사례](docs/01-render-flow.md) — 첫 요청·클라이언트 전환 흐름, hydration mismatch, 깨진 데이터가 두 방식에서 다르게 실패하는 모습
