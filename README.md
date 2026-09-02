@@ -88,3 +88,17 @@ npm run lint         # ESLint 검사
 npm run format       # Prettier 적용
 npm run format:check # 포맷 검사
 ```
+
+## 브랜치
+
+`main`은 뼈대다. 학습 시나리오는 [`docs/00-scenarios.md`](docs/00-scenarios.md)에 과제로 정의되어 있고, 풀이는 `main`에서 딴 브랜치에 남긴다. 머지하지 않는다.
+
+| 브랜치                       | 역할                                                                                                                  | 산출물                   |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| `main`                       | 뼈대 + 과제 정의                                                                                                      | `docs/00-scenarios.md`   |
+| `debug/render-flow-answer`   | 시나리오 1 풀이, 시도 1. hydration 전에는 목록을 안 그리는 방식. 콘솔 에러는 사라지지만 서버 HTML에서 목록이 사라진다 | `docs/01-render-flow.md` |
+| `debug/render-flow-answer-2` | 시나리오 1 풀이, 시도 2. 날짜 포맷의 로케일을 고정해 원인을 잡음                                                      | `docs/01-render-flow.md` |
+| `debug/render-flow`          | 시나리오 1 참고 풀이(Claude). 흐름 관찰 표, 깨진 데이터 비교, 디버깅 체크리스트                                       | `docs/01-render-flow.md` |
+| `feat/comments`              | 시나리오 2 풀이. 상세 페이지 아래에 댓글 붙이기. 시도 1(정적 배열, 별도 페이지)에서 시도 2(JSON, loader 합치기)로     | `docs/02-screen-flow.md` |
+
+시나리오 1은 `/ssr`의 hydration mismatch를 찾아 고치는 것, 시나리오 2는 기존 화면에 하위 기능 하나를 붙이는 개발 흐름을 한 바퀴 도는 것이다.
