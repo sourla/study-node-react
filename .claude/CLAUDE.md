@@ -58,9 +58,13 @@ SSR 동작 확인은 `build` → `start`. 루트 `index.html`이나 `vite previe
 - **CSR**: 컴포넌트 `useEffect` 안에서 `common/api/posts.ts`의 `fetchPosts`/`fetchPost` 호출. 브라우저가 상대 경로 `/data/posts.json`을 fetch. 에러는 컴포넌트 state로 표시.
 - **SSR**: route module의 `loader`가 서버에서 실행. 서버에는 origin이 없어서 `new URL('/data/posts.json', request.url)`로 절대 URL을 만들어 fetch한다. 실패 시 `throw new Response(msg, { status })` → root `ErrorBoundary`가 `isRouteErrorResponse`로 받아 렌더링. 컴포넌트는 `useLoaderData()`로만 읽는다.
 
-데이터 원본은 `public/data/posts.json` 하나뿐이다(별도 API 서버 없음). 모든 조회 경로(`fetchPosts`, `ssrLoader`, `ssrDetailLoader`)가 Zod `postsSchema`로 응답을 검증한다.
+데이터 원본은 `public/data/posts.json`, `public/data/comments.json` 두 정적 파일이다(별도 API 서버 없음). SSR 상세 loader는 둘을 병렬로 받아 `{ post, comments }`로 합친다. 모든 조회 경로(`fetchPosts`, `fetchComments`, `ssrLoader`, `ssrDetailLoader`)가 Zod 스키마(`postsSchema`, `commentsSchema`)로 응답을 검증한다.
 
 SSR 페이지는 loader 로직을 별도 파일(`ssrLoader.ts`, `ssrDetailLoader.ts`)로 빼 두고 route module의 `loader(args: Route.LoaderArgs)`가 이를 감싼다. 테스트가 route 타입 없이 loader 함수를 직접 호출할 수 있고, route 파일에는 컴포넌트와 route export만 남아 react-refresh 규칙(`eslint.config.js`의 `allowExportNames`)과도 맞는 구조다.
+
+### 날짜 표시는 `common/utils/formatDate.ts`로만
+
+luxon `toLocaleString`을 컴포넌트에서 직접 부르면 서버(Node 로케일)와 브라우저(사용자 로케일)가 다른 문자열을 만들어 hydration mismatch가 난다. `formatDate`가 로케일 `ko`, 타임존 `Asia/Seoul`을 고정한다. 새 날짜 표시는 이 헬퍼를 쓴다.
 
 ## 브랜치 구조와 문서
 

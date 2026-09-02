@@ -1,8 +1,7 @@
 export type Comment = {
-  postId: number
   id: number
+  postId: number
+  author: string
   content: string
   createdAt: string
-  author: string
-  updatedAt: string
 }

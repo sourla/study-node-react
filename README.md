@@ -88,3 +88,8 @@ npm run lint         # ESLint 검사
 npm run format       # Prettier 적용
 npm run format:check # 포맷 검사
 ```
+
+## 문서
+
+- [시나리오 과제](docs/00-scenarios.md)
+- [시나리오 2 — 상세페이지 댓글 화면 개발 플로우](docs/02-screen-flow.md)

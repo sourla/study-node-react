@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "postId": 1,
+    "author": "reader1",
+    "content": "CSR과 SSR 차이가 한눈에 들어오네요.",
+    "createdAt": "2026-09-01T03:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "postId": 1,
+    "author": "admin",
+    "content": "감사합니다. 네트워크 탭도 같이 보세요.",
+    "createdAt": "2026-09-01T05:30:00.000Z"
+  },
+  {
+    "id": 3,
+    "postId": 2,
+    "author": "reader2",
+    "content": "loader가 서버에서만 도는 게 핵심이군요.",
+    "createdAt": "2026-09-02T01:00:00.000Z"
+  },
+  {
+    "id": 4,
+    "postId": 3,
+    "author": "reader1",
+    "content": "상세 화면에 댓글까지 한 번에 오는지 확인했습니다.",
+    "createdAt": "2026-09-03T02:00:00.000Z"
+  }
+]
