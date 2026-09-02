@@ -21,6 +21,7 @@ describe('PostList', () => {
       </MemoryRouter>,
     )
     expect(screen.getByRole('heading', { name: '테스트 게시글' })).toBeInTheDocument()
+    expect(screen.getByText('2026년 9월 1일')).toBeInTheDocument()
     expect(screen.getByText('내용')).toBeInTheDocument()
     expect(screen.getByText('by tester')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: '테스트 게시글' })).toHaveAttribute('href', '/1')

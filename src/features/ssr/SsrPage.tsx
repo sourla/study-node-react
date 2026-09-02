@@ -12,7 +12,7 @@ export function loader({ request }: Route.LoaderArgs) {
 export function SsrPage() {
   const posts = useLoaderData() as Post[]
   const location = useLocation()
-
+  console.log('SSRPage_posts', posts);
   useEffect(() => {
     if (import.meta.env.DEV) console.log('[page] SsrPage 진입', location.pathname)
   }, [location.pathname])
