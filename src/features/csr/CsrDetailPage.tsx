@@ -10,7 +10,7 @@ export function CsrDetailPage() {
     if (id) fetchPost(Number(id)).then(setPost)
   }, [id])
   return post ? (
-    <PostDetail post={post} backPath="/csr" />
+    <PostDetail post={post} backPath="/csr" commentsPath={`/csr/${post.id}/comments`} />
   ) : (
     <p className="text-zinc-500">게시글을 불러오는 중...</p>
   )

@@ -10,7 +10,7 @@ export function loader({ params, request }: Route.LoaderArgs) {
 
 export function SsrDetailPage() {
   const post = useLoaderData() as Post
-  return <PostDetail post={post} backPath="/ssr" />
+  return <PostDetail post={post} backPath="/ssr" commentsPath={`/ssr/${post.id}/comments`} />
 }
 
 export default SsrDetailPage

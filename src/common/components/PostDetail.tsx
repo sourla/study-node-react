@@ -1,6 +1,15 @@
 import { DateTime } from 'luxon'
+import { Link } from 'react-router-dom'
 import type { Post } from '../types/post'
-export function PostDetail({ post, backPath }: { post: Post; backPath: string }) {
+export function PostDetail({
+  post,
+  backPath,
+  commentsPath,
+}: {
+  post: Post
+  backPath: string
+  commentsPath?: string
+}) {
   return (
     <article className="max-w-2xl rounded-2xl border border-white/10 bg-white/[.04] p-8">
       <a href={backPath} className="text-sm text-violet-300 hover:text-white">
@@ -12,6 +21,14 @@ export function PostDetail({ post, backPath }: { post: Post; backPath: string })
         {post.author} · {DateTime.fromISO(post.createdAt).toLocaleString(DateTime.DATE_MED)}
       </p>
       <p className="mt-10 leading-8 text-zinc-300">{post.content}</p>
+      {commentsPath && (
+        <Link
+          to={commentsPath}
+          className="mt-10 inline-flex rounded-lg bg-violet-500 px-4 py-2 text-sm font-medium text-white hover:bg-violet-400"
+        >
+          댓글 보기
+        </Link>
+      )}
     </article>
   )
 }
