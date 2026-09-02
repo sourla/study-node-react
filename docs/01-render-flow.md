@@ -69,7 +69,7 @@ Hydration failed because the server rendered text didn't match the client.
 - 브라우저 `/ssr` 콘솔 에러 0.
 - 테스트: 실행 환경 로케일·타임존을 바꿔도 같은 문자열.
 
-(결과는 직접 채운다)
+curl 쳐서 확인했고 html 전체가 나와서 curl | grep 2026년 으로 하이라이팅 확인함
 
 ### 두 시도 비교
 

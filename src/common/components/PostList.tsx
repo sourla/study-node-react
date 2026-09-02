@@ -14,7 +14,9 @@ export function PostList({ posts, basePath = '' }: { posts: Post[]; basePath?: s
               POST #{post.id}
             </span>
             <span className="text-xs text-zinc-500">
-              {DateTime.fromISO(post.createdAt).setLocale('ko-KR').toLocaleString(DateTime.DATE_MED)}
+              {DateTime.fromISO(post.createdAt)
+                .setLocale('ko-KR')
+                .toLocaleString(DateTime.DATE_MED)}
             </span>
           </div>
           <h2 className="mb-2 text-xl font-semibold text-white">
