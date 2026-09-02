@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useSyncExternalStore } from 'react'
 import { useLoaderData, useLocation } from 'react-router-dom'
 import { PostList } from '../../common/components/PostList'
 import type { Post } from '../../common/types/post'
@@ -9,13 +9,24 @@ export function loader({ request }: Route.LoaderArgs) {
   return ssrLoader({ request })
 }
 
+// 하이드레이션 전후의 렌더링 결과를 구분한다.
+// 구독할 외부 스토어는 없으므로 subscribe는 빈 함수로 둔다.
+const emptySubscribe = () => () => {}
+
+function useIsHydrated() {
+  return useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  )
+}
+
 export function SsrPage() {
   const posts = useLoaderData() as Post[]
   const location = useLocation()
+  const isHydrated = useIsHydrated()
 
-  useEffect(() => {
-    if (import.meta.env.DEV) console.log('[page] SsrPage 진입', location.pathname)
-  }, [location.pathname])
+  if (import.meta.env.DEV) console.log('[page] SsrPage 진입', location.pathname)
 
   return (
     <main>
@@ -37,7 +48,7 @@ export function SsrPage() {
         </span>
         <span className="text-zinc-400">상세 화면 · 총 5개</span>
       </div>
-      <PostList posts={posts} basePath="/ssr" />
+      {isHydrated && <PostList posts={posts} basePath="/ssr" />}
     </main>
   )
 }
