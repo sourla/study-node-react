@@ -25,3 +25,7 @@ dist-ssr
 *.sln
 *.sw?
 .react-router/
+
+# Claude Code — 개인 로컬 레이어
+CLAUDE.local.md
+.claude/settings.local.json
