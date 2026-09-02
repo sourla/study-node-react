@@ -21,6 +21,15 @@ function useIsHydrated() {
   )
 }
 
+// 초기 hydration 중 loader 데이터가 준비될 때까지 React Router가 표시하는 fallback이다.
+export function HydrateFallback() {
+  return (
+    <p role="status" className="text-zinc-400">
+      게시글을 불러오는 중...
+    </p>
+  )
+}
+
 export function SsrPage() {
   const posts = useLoaderData() as Post[]
   const location = useLocation()
@@ -48,7 +57,12 @@ export function SsrPage() {
         </span>
         <span className="text-zinc-400">상세 화면 · 총 5개</span>
       </div>
-      {isHydrated && <PostList posts={posts} basePath="/ssr" />}
+      {isHydrated ? (
+        <PostList posts={posts} basePath="/ssr" />
+      ) : (
+        // 서버 렌더링 및 하이드레이션 중에는 목록 대신 fallback을 표시한다.
+        <HydrateFallback />
+      )}
     </main>
   )
 }
